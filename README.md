@@ -23,6 +23,7 @@ Disables Dell-related scheduled tasks to prevent relaunch after reboot
 This script does not uninstall any Dell software, but it will disable the functionality of Dell Command | Update and associated components. Use this at your own risk, especially in enterprise environments where Dell utilities may be managed centrally.
 
 ✅ Supported OS
+
 Windows 10
 
 Windows 11
@@ -30,6 +31,7 @@ Windows 11
 Tested on Dell systems running Dell Command | Update 5.5.0 and higher
 
 📦 Services Targeted
+
 DellClientManagementService
 
 DellTechHub
@@ -45,6 +47,7 @@ DellUpdate
 DellSupportAssistAgent
 
 🔫 Processes Force-Killed
+
 This script uses WMI-based termination and taskkill to ensure all related executables are forcefully stopped:
 
 Dell.TechHub.Instrumentation.SubAgent.exe
@@ -58,6 +61,7 @@ Dell.TechHub.exe
 Dell.Update.SubAgent.exe
 
 🛠 How to Use
+
 Right-click PowerShell > Run as Administrator
 
 Clone or download this repo
@@ -65,13 +69,18 @@ Clone or download this repo
 Run the script:
 
 powershell
+
 Copy
+
 Edit
+
 Set-ExecutionPolicy Bypass -Scope Process -Force
 .\disable-dell-subagents.ps1
+
 ✅ That's it! No reboot required.
 
 📁 Optional
+
 If you're looking to block the executables from ever launching again, you can:
 
 Use icacls to deny execution permissions on the .exe files.
@@ -79,5 +88,6 @@ Use icacls to deny execution permissions on the .exe files.
 Deploy this via GPO or your RMM for multiple machines.
 
 📜 License
+
 This project is open-source and provided as-is under the MIT License.
 
