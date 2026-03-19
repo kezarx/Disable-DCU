@@ -1,4 +1,4 @@
-# Run this script as Administrator
+# Run as Administrator
 
 Write-Host "`nStopping Dell services, killing stubborn processes, and disabling tasks..." -ForegroundColor Cyan
 
@@ -29,7 +29,7 @@ foreach ($service in $services) {
     }
 }
 
-# SubAgent EXEs to force-kill using WMI and taskkill
+
 $dellSubAgentEXEs = @(
     "Dell.TechHub.Instrumentation.SubAgent.exe",
     "Dell.TechHub.DataManager.SubAgent.exe",
@@ -39,7 +39,7 @@ $dellSubAgentEXEs = @(
 )
 
 foreach ($exe in $dellSubAgentEXEs) {
-    # WMI kill attempt
+    
     $procs = Get-WmiObject Win32_Process -Filter "Name = '$exe'" -ErrorAction SilentlyContinue
     foreach ($proc in $procs) {
         try {
@@ -50,7 +50,7 @@ foreach ($exe in $dellSubAgentEXEs) {
         }
     }
 
-    # Taskkill fallback
+    
     try {
         taskkill /F /IM $exe /T > $null 2>&1
         Write-Host "Taskkill terminated: $exe"
@@ -59,7 +59,7 @@ foreach ($exe in $dellSubAgentEXEs) {
     }
 }
 
-# Disable scheduled Dell tasks
+
 $taskPaths = @(
     "\Dell\CommandUpdate",
     "\Dell\SupportAssistAgent",
